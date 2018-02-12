@@ -1,0 +1,23 @@
+<h1>Game Score</h1>
+  <div class="container">
+    <div id="results"><%= @result.html_safe %></div>
+    <div id="validity"></div>
+    <div id="word-test"><%= @word %></div>
+    <div class="play-again"><%= link_to "Play again", new_path %></div>
+  </div>
+
+<script>
+const word = document.getElementById("word-test").innerText;
+const input = document.getElementById("validity");
+console.log(word);
+  fetch(`https://wagon-dictionary.herokuapp.com/${word}`)
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data.found);
+       if (data.found === true) {
+          validity.insertAdjacentHTML("beforeend", "Your word exist");
+         } else {
+          validity.insertAdjacentHTML("beforeend", "Your word doesn't exist");
+         }
+       });
+</script>
